@@ -1,8 +1,11 @@
-export default function Char({ children }: { children: React.ReactNode }) : JSX.Element {
+type props = {
+    children: React.ReactNode,
+    flag: boolean
+}
 
-    
+export default function Char( props:props ) : JSX.Element {
 
     return (
-        <span className='op0' >{children}</span>
+        <span className = {props.flag ? 'op1' : 'op0'} >{props.children}</span>
     )
 }

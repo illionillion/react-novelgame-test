@@ -6,7 +6,13 @@
     margin: auto;
     font-size: 2em;
 
+
+    span.op1{
+        transition: 0.8s;
+        opacity: 1;
+    }
     span.op0{
+        // transition: 0.8s;
         opacity: 0;
     }
 }

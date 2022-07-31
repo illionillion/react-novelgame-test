@@ -1,34 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Char from '../char';
 import './index.scss'
 export default function TextDialog({ children }: { children: React.ReactNode }) : JSX.Element {    
 
-    // console.log(children);
-    // console.log(typeof children);
-
-    
     // 配列にする
     const childArray = React.Children.toArray(children)
     const stringArray = Array.from(childArray[0].toString())
-    // console.log(childArray[0]);
-    console.log(stringArray);
-    
 
-    // for (const key in childArray) {
-    //     if (Object.prototype.hasOwnProperty.call(childArray, key)) {
-    //         // console.dir(childArray[key]);
-    //         if (typeof childArray[key] === 'object') {
-    //             console.log(childArray[key]);
-                
-    //         } else {
-    //             console.log(childArray[key])
-    //         }
-    //     }
-    // }
+    const [charList, setCharList] = useState(new Array(stringArray.length).fill(false))
+
+    let count = 0
+    let timer : any
+
+    useEffect(()=>{
+
+        timer = !timer && setInterval(()=>{
+
+            if (count > charList.length) {
+                count = 0
+                setCharList(
+                    charList.map((val, index) => (index < count ? !val : val))
+                )                
+                return
+            }
+            // console.log(count);
+            if (stringArray[count] === ' ') {
+                count++;
+            }
+            setCharList(
+                charList.map((val, index) => (index <= count ? !val : val))
+            )
+
+            count++;
+
+        },100)
+
+    },[])
 
     return (
         <div className="text-dialog">
-            {stringArray.map((output, index) => <Char key={index} >{output}</Char>)}
+            {stringArray.map((output, index) => <Char key={index} flag={charList[index]}>{output}</Char>)}
         </div>
     )
 }
