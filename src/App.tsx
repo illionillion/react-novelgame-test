@@ -4,7 +4,7 @@ function App() {
   return (
     <div className="App">
       <TextDialog>
-          Hello World!<br/>
+          Hello World!
           I am Web Developer.
       </TextDialog>
     </div>
