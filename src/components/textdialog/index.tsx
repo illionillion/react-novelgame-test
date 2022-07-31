@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import timer from '../../interface/timer';
 import Char from '../char';
 import './index.scss'
 export default function TextDialog({ children }: { children: React.ReactNode }) : JSX.Element {    
@@ -10,7 +11,7 @@ export default function TextDialog({ children }: { children: React.ReactNode }) 
     const [charList, setCharList] = useState(new Array(stringArray.length).fill(false))
 
     let count = 0
-    let timer : any
+    let timer : timer
 
     useEffect(()=>{
 
