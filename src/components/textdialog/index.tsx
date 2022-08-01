@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import timer from '../../interface/timer';
 import Char from '../char';
 import './index.scss'
-export default function TextDialog({ children }: { children: React.ReactNode }) : JSX.Element {    
+const context = React.createContext('コンテキスト')
+export {context}
+export default function TextDialog({ children }: { children: React.ReactNode }) : JSX.Element {
 
     // 配列にする
     const childArray = React.Children.toArray(children)
@@ -44,6 +46,7 @@ export default function TextDialog({ children }: { children: React.ReactNode }) 
 
     return (
         <div className="text-dialog">
+            <div>{useContext(context)}</div>
             {stringArray.map((output, index) => <Char key={index} flag={charList[index]}>{output}</Char>)}
         </div>
     )

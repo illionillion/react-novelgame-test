@@ -1,4 +1,5 @@
-import TextDialog from './components/textdialog';
+import { useContext } from 'react';
+import TextDialog, { context,} from './components/textdialog';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
           Hello World!
           I am Web Developer.
       </TextDialog>
+      <div>{`${useContext(context)}`}</div>
     </div>
   );
 }
