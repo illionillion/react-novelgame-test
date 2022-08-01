@@ -15,26 +15,30 @@ export default function TextDialog({ children }: { children: React.ReactNode }) 
 
     useEffect(()=>{
 
-        timer = !timer && setInterval(()=>{
+        // timer = !timer && 
+        if (!timer) {
+            timer = setInterval(()=>{
 
-            if (count > charList.length) {
-                count = 0
+                if (count > charList.length) {
+                    count = 0
+                    setCharList(
+                        charList.map((val, index) => (index < count ? !val : val))
+                    )                
+                    return
+                }
+                // console.log(count);
+                if (stringArray[count] === ' ') {
+                    count++;
+                }
                 setCharList(
-                    charList.map((val, index) => (index < count ? !val : val))
-                )                
-                return
-            }
-            // console.log(count);
-            if (stringArray[count] === ' ') {
+                    charList.map((val, index) => (index <= count ? !val : val))
+                )
+    
                 count++;
-            }
-            setCharList(
-                charList.map((val, index) => (index <= count ? !val : val))
-            )
-
-            count++;
-
-        },100)
+    
+            },100)
+            console.log(timer);
+        }
 
     },[])
 
